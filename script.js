@@ -46,7 +46,7 @@ const button = document.querySelector('button')
 
 button.addEventListener('click', () => {
     let squareNum = Number(prompt("Enter the number of squares per side for the new grid from 1 to 100."))
-    if ( typeof(squareNum) != 'number' || squareNum < 1 || squareNum > 100) {
+    if ( isNaN(squareNum) || squareNum < 1 || squareNum > 100) {
         alert("Invalid input. You can only enter numbers from 1 to 100.")
     } else {
         eraseGrid()
