@@ -1,13 +1,19 @@
-const container = document.getElementById('container')
+const grid = document.getElementById('grid')
+const defNum = 16
 
-function createRows (i) {
+function randRGB () {
+    return (`${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}`)
+}
+
+function createColumn (i, num) {
     const row = document.createElement('div')
     row.setAttribute('data-key', i)
     row.classList.add('row')
-    container.appendChild(row)
-    for (let n = 0; n < 16; n++) {
+    grid.appendChild(row)
+    for (let n = 0; n < num; n++) {
         createSquares(n, row)
     }
+    attachListen()
 }
 
 function createSquares (n,row) {
@@ -17,16 +23,46 @@ function createSquares (n,row) {
     row.appendChild(square)
 }
 
-function drawGrid() {
-    //Create a 16x16 grid of square divs
-    // I think I'm going to use a for loop to create each div, then append them to the container
-    // Create a for loop that continues a for loop that executes 16 times (execute the foor loop inside for each row), each time we'll create a row div.
-    for (let i = 0; i < 16; i++) {
-        createRows(i)
-    }
-    // Create a for loop that continues as long the iterator is smaller than 16, everytime create a 16px long cube
-        // Everytime you're done create square, add the class "square" to it.
-    // Append to container
+function attachListen () {
+    const squares = Array.prototype.slice.call(document.getElementsByClassName('square'))
+    squares.forEach(square => {
+        square.addEventListener('mouseover', () => {
+            square.style.cssText = `background-color: rgb(${randRGB()})`
+        })
+    });
+    
 }
 
-drawGrid()
+
+function drawGrid(num) {
+    for (let i = 0; i < num; i++) {
+        createColumn(i, num)
+    }
+}
+
+drawGrid(defNum)
+
+const button = document.querySelector('button')
+
+button.addEventListener('click', () => {
+    let squareNum = Number(prompt("Enter the number of squares per side for the new grid from 1 to 100."))
+    if ( typeof(squareNum) != 'number' || squareNum < 1 || squareNum > 100) {
+        alert("Invalid input. You can only enter numbers from 1 to 100.")
+    } else {
+        eraseGrid()
+        drawGrid(squareNum)
+    }
+})
+
+
+
+
+
+
+function eraseGrid () {
+    while (grid.firstChild) {
+        grid.removeChild(grid.firstChild);
+    }
+}
+
+

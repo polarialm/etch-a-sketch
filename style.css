@@ -1,14 +1,30 @@
 
+#grid {
+    height: 512px;
+    width: 512px;
+    display: flex;
+    flex-direction: column;
+}
+
 
 .row {
     display: flex;
+    flex: 1 1 0%;
+    flex-direction: row;
 }
 
+
+
+
 .square{
-    height: 14px;
-    width: 14px;
     margin: 0px;
     border: 1px;
     border-style: solid;
     border-color: grey;
+    flex: 1 1 0%;
+    
+}
+
+.painted {
+    background-color: magenta;
 }
