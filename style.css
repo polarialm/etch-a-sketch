@@ -26,7 +26,9 @@ h1 {
     width: 512px;
     display: flex;
     flex-direction: column;
-    margin: 32px
+    margin: 32px;
+    border-style: solid;
+    border-color: #2A2729;
 }
 
 
@@ -43,7 +45,7 @@ h1 {
     margin: 0px;
     border: 1px;
     border-style: solid;
-    border-color: grey;
+    border-color: #2A2729;
     background-color: white;
     flex: 1 1 0%;
     
